@@ -9,7 +9,9 @@ public class MoveToTargetAgent : Agent
 {
     [SerializeField] private Transform target;
     [SerializeField] private Transform environment;
-    [SerializeField] private SpriteRenderer BackgroundSpriteRenderer;
+    [SerializeField] private SpriteRenderer backgroundSpriteRenderer;
+    [SerializeField] private Material correctColour;
+    [SerializeField] private Material inCorrectColour;
 
     public override void OnEpisodeBegin()
     {
@@ -49,13 +51,13 @@ public class MoveToTargetAgent : Agent
         if(collision.TryGetComponent(out Target target))
         {
             AddReward(10);
-            BackgroundSpriteRenderer.color = Color.green;
+            backgroundSpriteRenderer.color = correctColour.color;
             EndEpisode();
         }
         else if (collision.TryGetComponent(out Walls wall))
         {
             AddReward(-2);
-            BackgroundSpriteRenderer.color = Color.red;
+            backgroundSpriteRenderer.color = inCorrectColour.color;
             EndEpisode();
         }
     }
