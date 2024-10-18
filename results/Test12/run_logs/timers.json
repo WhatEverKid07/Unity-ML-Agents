@@ -1,0 +1,49 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1729257722",
+        "python_version": "3.9.13 (tags/v3.9.13:6de2ca5, May 17 2022, 16:36:42) [MSC v.1929 64 bit (AMD64)]",
+        "command_line_arguments": "C:\\Users\\ecallegari-l2023\\AppData\\Local\\Programs\\Python\\Python39\\Scripts\\mlagents-learn Assets\\configuration.yaml --run-id=Test12",
+        "mlagents_version": "0.30.0",
+        "mlagents_envs_version": "0.30.0",
+        "communication_protocol_version": "1.5.0",
+        "pytorch_version": "2.0.1+cpu",
+        "numpy_version": "1.21.2",
+        "end_time_seconds": "1729257729"
+    },
+    "total": 6.494708900000001,
+    "count": 1,
+    "self": 0.0077875000000009464,
+    "children": {
+        "run_training.setup": {
+            "total": 0.1509307999999998,
+            "count": 1,
+            "self": 0.1509307999999998
+        },
+        "TrainerController.start_learning": {
+            "total": 6.3359906,
+            "count": 1,
+            "self": 0.0001647000000000176,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 6.2014213,
+                    "count": 1,
+                    "self": 6.2014213
+                },
+                "TrainerController._save_models": {
+                    "total": 0.13440459999999987,
+                    "count": 1,
+                    "self": 0.003490799999999794,
+                    "children": {
+                        "RLTrainer._checkpoint": {
+                            "total": 0.13091380000000008,
+                            "count": 1,
+                            "self": 0.13091380000000008
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
