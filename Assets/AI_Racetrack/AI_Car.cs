@@ -48,12 +48,19 @@ public class CarAgent : Agent
 
     private void MoveCar(float moveInput, float turnInput)
     {
-        // Apply movement logic (simple physics-based movement)
+        // Apply forward/backward movement based on input
         Vector2 move = transform.up * moveInput * 10f;
         carRigidbody.AddForce(move);
 
-        float turn = -turnInput * 200f;
-        carRigidbody.AddTorque(turn);
+        // Only allow turning if the car is moving
+        float speed = carRigidbody.velocity.magnitude;
+
+        if (speed > 0.1f) // Allow turning only when moving forward or backward
+        {
+            // Make the turning rate depend on the speed (faster = less turning)
+            float turn = -turnInput * Mathf.Clamp(200f / speed, 50f, 200f);
+            carRigidbody.AddTorque(turn);
+        }
     }
 
     // Reset the agent (used during training)
