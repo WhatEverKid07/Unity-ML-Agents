@@ -7,34 +7,35 @@ public class CarAgent : Agent
 {
     public Rigidbody2D carRigidbody;
     public Transform finishLine;
+    public Transform[] checkpoints; // Array of checkpoints
+    private int currentCheckpointIndex = 0; // Keep track of the current checkpoint
     private Vector2 startPosition;
-
-    private float maxEpisodeLength = 500f; // Example time limit
-    private float currentEpisodeTime = 0f;
 
     // Initialize the agent
     public override void Initialize()
     {
         startPosition = transform.position;
+        currentCheckpointIndex = 0; // Reset to the first checkpoint at the start
     }
 
-    // Collect observations (distance from the track and other cars)
+    // Collect observations (distance to current checkpoint and finish line)
     public override void CollectObservations(VectorSensor sensor)
     {
-        // Add the position relative to the finish line (distance and direction)
-        Vector2 directionToFinish = (finishLine.position - transform.position).normalized;
-        sensor.AddObservation(directionToFinish); // Direction to the finish line
-        sensor.AddObservation(Vector2.Distance(transform.position, finishLine.position));
+        // Add the position relative to the current checkpoint
+        Transform currentCheckpoint = checkpoints[currentCheckpointIndex];
+        sensor.AddObservation(Vector2.Distance(transform.position, currentCheckpoint.position));
 
         // Add the velocity of the car
         sensor.AddObservation(carRigidbody.velocity);
 
-        // Add the car's orientation (angle in relation to track direction)
-        sensor.AddObservation(transform.up);
+        // Add the direction to the current checkpoint
+        Vector2 directionToCheckpoint = (currentCheckpoint.position - transform.position).normalized;
+        sensor.AddObservation(directionToCheckpoint);
 
-        // Optionally: Add more observations, such as distances to the nearest walls, other cars, etc.
+        // Optional: Add the direction to the finish line
+        Vector2 directionToFinish = (finishLine.position - transform.position).normalized;
+        sensor.AddObservation(directionToFinish);
     }
-
 
     // Take actions based on neural network output
     public override void OnActionReceived(ActionBuffers actions)
@@ -43,21 +44,7 @@ public class CarAgent : Agent
         float turnInput = actions.ContinuousActions[1]; // steering
 
         MoveCar(moveInput, turnInput);
-
-        // Reward the agent for moving closer to the finish line
-        float distanceToFinish = Vector2.Distance(transform.position, finishLine.position);
-        SetReward(1.0f / distanceToFinish); // Higher reward for closer proximity
-
-        currentEpisodeTime += Time.deltaTime;
-        if (currentEpisodeTime > maxEpisodeLength)
-        {
-            SetReward(-1.0f); // Penalty for not finishing in time
-            EndEpisode();
-        }
-        // Optionally: Penalize for straying from the track
-        // if (OffTrack()) SetReward(-0.01f);
     }
-
 
     private void MoveCar(float moveInput, float turnInput)
     {
@@ -76,29 +63,40 @@ public class CarAgent : Agent
         carRigidbody.angularVelocity = 0;
         transform.position = startPosition;
         transform.rotation = Quaternion.identity;
-        currentEpisodeTime = 0f;
+        currentCheckpointIndex = 0; // Reset to the first checkpoint
     }
 
-    public override void Heuristic(in ActionBuffers actionsOut)
-    {
-        ActionSegment<float> continuousActions = actionsOut.ContinuousActions;
-        continuousActions[0] = Input.GetAxisRaw("Vertical"); // Throttle/brake
-        continuousActions[1] = Input.GetAxisRaw("Horizontal"); // Steering
-    }
-
-
-    // Reward logic (based on distance to the finish line, or penalize for hitting walls)
+    // Reward logic (penalize for hitting walls or reset after finishing the race)
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Finish"))
+        // Check if the agent reached the current checkpoint
+        if (collision.CompareTag("Checkpoint"))
+        {
+            // Verify it's the correct checkpoint
+            if (collision.transform == checkpoints[currentCheckpointIndex])
+            {
+                SetReward(1.0f); // Reward for reaching a checkpoint
+                currentCheckpointIndex++; // Move to the next checkpoint
+            }
+
+            // If all checkpoints are cleared, reward for reaching the finish
+            if (currentCheckpointIndex >= checkpoints.Length)
+            {
+                SetReward(10.0f); // Larger reward for finishing the race
+                EndEpisode();
+            }
+        }
+        // Check if the agent hit the finish line (only after passing all checkpoints)
+        else if (collision.CompareTag("Finish") && currentCheckpointIndex >= checkpoints.Length)
         {
             SetReward(10.0f); // Reward for finishing the race
             EndEpisode();
         }
-        else if (collision.CompareTag("Wall"))
+        // Penalty for hitting walls or obstacles
+        else if (collision.CompareTag("Wall") || collision.CompareTag("Obstacle"))
         {
-            SetReward(-2.0f); // Penalty for hitting the wall
-            EndEpisode();
+            SetReward(-2.0f); // Penalty for hitting a wall
+            EndEpisode(); // Reset the agent after collision
         }
     }
 }

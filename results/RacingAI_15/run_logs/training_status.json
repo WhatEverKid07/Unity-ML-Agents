@@ -1,0 +1,29 @@
+{
+    "CarAgentBehavior": {
+        "checkpoints": [
+            {
+                "steps": 6206,
+                "file_path": "results\\RacingAI_15\\CarAgentBehavior\\CarAgentBehavior-6206.onnx",
+                "reward": null,
+                "creation_time": 1729597381.6084235,
+                "auxillary_file_paths": [
+                    "results\\RacingAI_15\\CarAgentBehavior\\CarAgentBehavior-6206.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 6206,
+            "file_path": "results\\RacingAI_15\\CarAgentBehavior.onnx",
+            "reward": null,
+            "creation_time": 1729597381.6084235,
+            "auxillary_file_paths": [
+                "results\\RacingAI_15\\CarAgentBehavior\\CarAgentBehavior-6206.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.0.1+cpu"
+    }
+}
