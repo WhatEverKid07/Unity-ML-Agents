@@ -1,0 +1,47 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1729589179",
+        "python_version": "3.9.13 (tags/v3.9.13:6de2ca5, May 17 2022, 16:36:42) [MSC v.1929 64 bit (AMD64)]",
+        "command_line_arguments": "C:\\Users\\ecallegari-l2023\\AppData\\Local\\Programs\\Python\\Python39\\Scripts\\mlagents-learn --run-id=RacingAI_3",
+        "mlagents_version": "0.30.0",
+        "mlagents_envs_version": "0.30.0",
+        "communication_protocol_version": "1.5.0",
+        "pytorch_version": "2.0.1+cpu",
+        "numpy_version": "1.21.2",
+        "end_time_seconds": "1729589199"
+    },
+    "total": 19.466098900000002,
+    "count": 1,
+    "self": 0.00413870000000216,
+    "children": {
+        "run_training.setup": {
+            "total": 0.03767619999999994,
+            "count": 1,
+            "self": 0.03767619999999994
+        },
+        "TrainerController.start_learning": {
+            "total": 19.424284,
+            "count": 1,
+            "self": 0.00033459999999863044,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 19.4239402,
+                    "count": 1,
+                    "self": 19.4239402
+                },
+                "trainer_threads": {
+                    "total": 7.000000010748408e-07,
+                    "count": 1,
+                    "self": 7.000000010748408e-07
+                },
+                "TrainerController._save_models": {
+                    "total": 8.499999999855845e-06,
+                    "count": 1,
+                    "self": 8.499999999855845e-06
+                }
+            }
+        }
+    }
+}

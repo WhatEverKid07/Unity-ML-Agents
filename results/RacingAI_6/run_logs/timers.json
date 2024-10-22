@@ -1,0 +1,47 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1729590026",
+        "python_version": "3.9.13 (tags/v3.9.13:6de2ca5, May 17 2022, 16:36:42) [MSC v.1929 64 bit (AMD64)]",
+        "command_line_arguments": "C:\\Users\\ecallegari-l2023\\AppData\\Local\\Programs\\Python\\Python39\\Scripts\\mlagents-learn Assets/AI_Racetrack/CarConfig.yaml --run-id=RacingAI_6 --train",
+        "mlagents_version": "0.30.0",
+        "mlagents_envs_version": "0.30.0",
+        "communication_protocol_version": "1.5.0",
+        "pytorch_version": "2.0.1+cpu",
+        "numpy_version": "1.21.2",
+        "end_time_seconds": "1729590042"
+    },
+    "total": 16.4008768,
+    "count": 1,
+    "self": 0.005091399999997748,
+    "children": {
+        "run_training.setup": {
+            "total": 0.1750891000000001,
+            "count": 1,
+            "self": 0.1750891000000001
+        },
+        "TrainerController.start_learning": {
+            "total": 16.2206963,
+            "count": 1,
+            "self": 0.0003149999999969566,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 16.2203704,
+                    "count": 1,
+                    "self": 16.2203704
+                },
+                "trainer_threads": {
+                    "total": 5.999999999062311e-07,
+                    "count": 1,
+                    "self": 5.999999999062311e-07
+                },
+                "TrainerController._save_models": {
+                    "total": 1.0300000003127252e-05,
+                    "count": 1,
+                    "self": 1.0300000003127252e-05
+                }
+            }
+        }
+    }
+}
