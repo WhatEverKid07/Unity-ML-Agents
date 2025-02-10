@@ -6,7 +6,7 @@
     <title>ML Agents</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@500&display=swap" rel="stylesheet">
 
     <style>
         * {
@@ -16,7 +16,10 @@
         }
 
         body {
-            font-family: "Silkscreen", serif;
+            font-family: "Bitter", serif;
+            font-optical-sizing: auto;
+            font-weight: 500;
+            font-style: normal;
             line-height: 1.6;
             background-color: #f9f9f9;
             color: #333;
@@ -29,7 +32,8 @@
         }
 
             header h1 {
-                font-family: "Silkscreen", serif;
+                font-family: "Bitter", serif;
+                font-weight: 500;
                 font-size: 2.5rem;
                 margin-bottom: 10px;
             }
@@ -49,7 +53,8 @@
         }
 
             section h2 {
-                font-family: "Silkscreen", serif;
+                font-family: "Bitter", serif;
+                font-weight: 500;
                 font-size: 2rem;
                 margin-bottom: 10px;
                 color: #444;
@@ -65,36 +70,50 @@
             font-size: 0.9rem;
             color: #777;
         }
+
+        /* Links */
+        a {
+            color: lightblue;
+            text-decoration: none;
+        }
+
+            a:hover {
+                color: red;
+            }
+
+        /* Custom Classes */
+        .thick-underline {
+            text-decoration: underline;
+            text-decoration-thickness: 3px;
+        }
     </style>
 
 </head>
 <body>
     <header>
         <h1>Unity ML Agents</h1>
-        <p>A simple customizable website powered by GitHub Pages</p>
+        <p>A Machine Learning experience using Python and Unity.</p>
     </header>
 
     <main>
         <section>
             <h2>About</h2>
-            <p>This is a basic template to help you get started with your website. You can edit the content, styles, and layout to suit your needs.</p>
+            <p>This was a small side project for college. We used ML-Agents and Unity to train an agent to collect a target without hitting the walls.</p>
         </section>
 
         <section>
-            <h2>Features</h2>
-            <p>- Fully customizable</p>
-            <p>- Powered by GitHub Pages</p>
-            <p>- Uses modern web technologies</p>
+            <h2>Process</h2>
+            <p>
+                It started with following a tutorial to get everything installed and working together. Using the command prompt, I installed Python and all the packages needed for ML-Agents to work with Unity.
+                After some tweaking, changes, and installing specific versions of software, I was able to start training the agent by running a command and ensuring it was rewarded when hitting the target
+                and punished when hitting the wall.
+            </p>
         </section>
 
         <section>
             <h2>Contact</h2>
-            <p>Feel free to reach out with questions or feedback!</p>
+            <p>Feel free to check out my <a href="https://eugeniocl.wixsite.com/eclgamesdesign" target="_blank">portfolio</a> for links to get in touch!</p>
         </section>
     </main>
-
-    <footer>
-        <p>© 2024 My Custom Website. All rights reserved.</p>
-    </footer>
 </body>
 </html>
