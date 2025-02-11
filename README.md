@@ -5,7 +5,3 @@ To learn more Check out the [video](https://www.youtube.com/watch?v=RANRz9oyzko&
 ## Support
 
 For support, create an issue or contact me via email: ecl.gamedev@gmail.com
-## Authors
-
-- [@octokatherine](https://www.github.com/octokatherine)
-
